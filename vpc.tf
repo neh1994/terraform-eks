@@ -32,6 +32,12 @@ module "vpc" {
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
   }
 
+#Categorization: Tags help you categorize AWS resources (e.g., EC2 instances, S3 buckets, VPCs) by assigning metadata. You can use tags to group resources by projects, environments (dev, prod), teams, owners, cost centers, or any other criteria.
+#Search and Filter: AWS resources can be filtered and searched based on their tags, which makes it easier to navigate through large AWS environments.
+#Key: "kubernetes.io/cluster/${local.cluster_name}" — This is a tag used by Kubernetes to identify and manage resources that are part of the same Kubernetes cluster. The ${local.cluster_name} dynamically inserts the cluster name, which is likely defined elsewhere in your Terraform configuration (in the locals block).
+
+#Value: "shared" — This indicates that the resources with this tag can be shared between multiple services or components within the cluster.
+
   public_subnet_tags = {
     "kubernetes.io/cluster/${local.cluster_name}" = "shared"
     "kubernetes.io/role/elb"                      = "1"
